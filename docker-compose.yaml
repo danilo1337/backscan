@@ -1,0 +1,21 @@
+services:
+
+  frontend:
+    image: backscan-frontend:latest
+    ports:
+      - "80:80"    
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    container_name: backscan-frontend
+    networks:
+      - my-network
+      
+  backend:
+    image: backscan-backend:latest
+    container_name: backscan-backend    
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
